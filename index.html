@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Transfer Certificate Generater</title>
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="assets/source/bootstrap/bootstrap.min.css">
+
+    <!-- Sass css -->
+    <link rel="stylesheet" href="assets/css/sass.css">
+</head>
+
+<body>
+    <!-- Student Transfer Certificate Modal -->
+    <div class="modal fade" id="studentTransferpdf" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="studentTransferpdfLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="studentTransferpdfLabel">PDF</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="w-100 d-flex justify-content-center" style="position: relative;">
+                        <div class="pdf-holder">
+                            <div id="invoice" class="a4-size-pdf">
+                                <div class="transfer-certificate-holder">
+                                    <div class="transfer-certificate-content">
+                                        <div id="pdf-pattern" class="pdf-pattern"></div>
+                                        <div class="background-logo-holder">
+                                            <img src="assets/image/logo/logo.png">
+                                        </div>
+                                        <div class="row m-0 p-2 g-4">
+                                            <div class="col-2 d-flex justify-content-center pdf-logo">
+                                                <img src="assets/image/logo/logo.png">
+                                            </div>
+                                            <div class="col-8 d-flex align-items-center justify-content-center">
+                                                <div class="d-block">
+                                                    <h4 class="text-center primary-s-color" style="font-weight: 700;">
+                                                        SMART MONTESSORI
+                                                        PRE-SCHOOL
+                                                    </h4>
+                                                    <h5 class="text-center primary-s-color">Haldebari-4,Jhapa</h5>
+                                                    <h6 class="text-center primary-s-color">+977 9816966947</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-2 d-flex justify-content-center">
+                                                <div class="pp-holder d-flex justify-content-center align-items-center">
+                                                    <span class="primary-s-color">PHOTO</span>
+                                                    <!-- <img src=""> -->
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="cursive">Ref no:<span id="refNoOutput" class="cursive"></span>
+                                                </p>
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="cursive">Student EMIS No:<span id="emisNoOutput"
+                                                            class="cursive"></span></p>
+                                                    <p class="cursive">Date: <span id="certificateDateOutput"
+                                                            class="cursive"></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <h2 class="text-center primary-s-color">
+                                                    Transfer Certificate
+                                                </h2>
+                                            </div>
+                                            <div class="col-12 p-5">
+                                                <p class="cursive text-center">This is to certify that Mr/Miss <span
+                                                        class="cursive" id="studentNameOutput"></span> son/daughter of
+                                                    <span class="cursive" id="fatherNameOutput"></span> & <span
+                                                        class="cursive" id="motherNameOutput"></span>,
+                                                    was admitted to Smart Montessori Pre-School in <span class="cursive"
+                                                        id="admissionYearOutput"></span> in grade <span class="cursive"
+                                                        id="admittedClassOutput"></span>.
+                                                    <br>
+                                                    He/She has successfully
+                                                    graduated to <span class="cursive" id="graduatedClassOutput"></span>
+                                                    with an <span class="cursive" id="gradeOutput"></span>.
+                                                </p>
+                                                <p class="text-center cursive">
+                                                    <span class="cursive" id="studentNameOutput2"></span> is now leaving
+                                                    our institution
+                                                    to
+                                                    <span class="cursive" id="reasonOutput"></span>, and we extend our
+                                                    best wishes
+                                                    for
+                                                    his/her continued success in his/her academic journey.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="pdf-footer">
+                                            <div class="row g-3 m-0">
+                                                <div class="col-6 sign-box d-flex justify-content-center">
+                                                    <small>Principal/ Vice-Principal Sign</small>
+                                                </div>
+                                                <div class="col-6 sign-box d-flex justify-content-center">
+                                                    <small>Parents Sign</small>
+                                                </div>
+                                                <div class="col-12">
+
+                                                </div>
+                                                <div class="col-12">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="generatePDF()" class="btn btn-primary">Download PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="whole-cotainer">
+        <h3 class="text-center text-white p-2">GENERATE TRANSFER CERTIFICATE</h3>
+        <form action="" class="p-2">
+            <div class="row m-0 g-2">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="refNo" class="form-label">REF NO *</label>
+                        <input type="text" id="refNo" name="refNo" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="emisNo" class="form-label">EMIS NO *</label>
+                        <input type="text" id="emisNo" name="emisNo" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="certificate-date" class="form-label">Certificate Date *</label>
+                        <input type="text" id="certificate-date" name="certificate-date" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="studentName" class="form-label">Student Name *</label>
+                        <input type="text" id="studentName" name="studentName" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="fatherName" class="form-label">Father Name *</label>
+                        <input type="text" id="fatherName" name="fatherName" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="motherName" class="form-label">Mother Name *</label>
+                        <input type="text" id="motherName" name="motherName" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="admissionYear" class="form-label">Admission Year *</label>
+                        <input type="text" id="admissionYear" name="admissionYear" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="admittedClass" class="form-label">Admitted Class *</label>
+                        <input type="text" id="admittedClass" name="admittedClass" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="graduatedClass" class="form-label">Graduated Class *</label>
+                        <input type="text" id="graduatedClass" name="graduatedClass" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="form-group">
+                        <label for="grade" class="form-label">Grade (Marks) *</label>
+                        <input type="text" id="grade" name="grade" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="reason" class="form-label">Reason *</label>
+                        <textarea name="reason" id="reason" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="d-flex justify-content-center p-3">
+            <button class="btn btn-primary" onclick="generateCertificate()">Submit</button>
+        </div>
+    </div>
+</body>
+<!-- Jquery js -->
+<script src="assets/source/js/jquery.min.js"></script>
+
+<!-- Bootstrp js -->
+<script src="assets/source/bootstrap/bootstrap.bundle.min.js"></script>
+
+<!-- Html to pdf -->
+<script src="assets/source/js/html2pdf.bundle.js"></script>
+
+<!-- Pdf generater js -->
+<script src="assets/js/pdf.js"></script>
+<!-- Pdf pattern -->
+<script>
+    const rows = 206;
+    const columns = 4;
+    const patternDiv = document.getElementById('pdf-pattern');
+    patternDiv.style.setProperty('--columns', columns);
+    for (let i = 0; i < rows * columns; i++) {
+        const wordDiv = document.createElement('div');
+        wordDiv.classList.add('word');
+        wordDiv.textContent = 'Smart Montessori Pre-School';
+        patternDiv.appendChild(wordDiv);
+    }
+</script>
+
+<script>
+    function generatePDF() {
+        const options = {
+            margin: 0,
+            filename: 'transfer_certificate.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 1.0 // Increase image quality (1.0 is maximum quality)
+            },
+            html2canvas: {
+                scale: 5, // Increase the scale for better quality
+                scrollY: 0,
+                scrollX: 0
+            },
+            jsPDF: {
+                unit: 'mm',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        };
+
+        const element = document.getElementById("invoice");
+
+        html2pdf().from(element).set(options).save();
+    }
+</script>
+
+</html>
